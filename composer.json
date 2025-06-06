@@ -49,7 +49,7 @@
     "prefer-stable": true,
     "scripts": {
         
-        "start": "php artisan serve --host=0.0.0.0 --port=${PORT}"
+        "start": "php artisan serve --host=0.0.0.0 --port=${PORT}",
 
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
