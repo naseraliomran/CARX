@@ -51,12 +51,12 @@ Route::middleware([ 'api'])->group(function () {
 
     Route::prefix('Car')->group(function () {
 
-        Route::post('save', 'CarsEmployeeControllers\CarsController@saveCar')->name('saveCar');
-        Route::delete('delete/{id}', 'CarsEmployeeControllers\CarsController@deleteCar')->name('deleteCar');
-        Route::post('update/{id}', 'CarsEmployeeControllers\CarsController@updateCar')->name('updateCar');
-        Route::post('uploadImage/{id}', 'CarsEmployeeControllers\CarsController@uploadImageCar')->name('uploadImageCar');
-        Route::post('deleteimage/{id}', 'CarsEmployeeControllers\CarsController@deleteimage')->name('deleteimage');
-        Route::get('getAll', 'CarsEmployeeControllers\CarsController@getAllCars')->name('getAllCars');
+        Route::post('save', 'CarsEmployeeControllers\CarsController@saveCar')->name('employee.saveCar');
+        Route::delete('delete/{id}', 'CarsEmployeeControllers\CarsController@deleteCar')->name('employee.deleteCar');
+        Route::post('update/{id}', 'CarsEmployeeControllers\CarsController@updateCar')->name('employee.updateCar');
+        Route::post('uploadImage/{id}', 'CarsEmployeeControllers\CarsController@uploadImageCar')->name('employee.uploadImageCar');
+        Route::post('deleteimage/{id}', 'CarsEmployeeControllers\CarsController@deleteimage')->name('employee.deleteimage');
+        Route::get('getAll', 'CarsEmployeeControllers\CarsController@getAllCars')->name('employee.getAllCars');
         Route::get('getAllForSelling', 'CarsEmployeeControllers\CarsController@getAllCarsForSelling');
         Route::get('getAllForRental', 'CarsEmployeeControllers\CarsController@getAllCarsForRental');
         Route::get('getAllRentalCars', 'CarsEmployeeControllers\CarsController@getAllRentalCars');
@@ -94,12 +94,12 @@ Route::middleware([ 'api'])->group(function () {
 
     Route::prefix('User/Car')->group(function () {
 
-        Route::post('save', 'UserControllers\CarController@saveCar')->name('saveCar');
-        Route::delete('delete/{id}', 'UserControllers\CarController@deleteCar')->name('deleteCar');
-        Route::post('update/{id}', 'UserControllers\CarController@updateCar')->name('updateCar');
-        Route::post('uploadImage/{id}', 'UserControllers\CarController@uploadImageCar')->name('uploadImageCar');
-        Route::post('deleteimage/{id}', 'UserControllers\CarController@deleteimage')->name('deleteimage');
-        Route::get('getAll', 'UserControllers\CarController@getAllCars')->name('getAllCars');
+        Route::post('save', 'UserControllers\CarController@saveCar')->name('user.saveCar');
+        Route::delete('delete/{id}', 'UserControllers\CarController@deleteCar')->name('user.deleteCar');
+        Route::post('update/{id}', 'UserControllers\CarController@updateCar')->name('user.updateCar');
+        Route::post('uploadImage/{id}', 'UserControllers\CarController@uploadImageCar')->name('user.uploadImageCar');
+        Route::post('deleteimage/{id}', 'UserControllers\CarController@deleteimage')->name('user.deleteimage');
+        Route::get('getAll', 'UserControllers\CarController@getAllCars')->name('user.getAllCars');
         Route::get('getAllMyCars', 'UserControllers\CarController@getAllMyCars');
         Route::get('getAllForSelling', 'UserControllers\CarController@getAllCarsForSelling');
         Route::get('getAllForRental', 'UserControllers\CarController@getAllCarsForRental');
