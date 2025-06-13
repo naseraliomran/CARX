@@ -49,7 +49,7 @@ Route::middleware([ 'api'])->group(function () {
         Route::delete('delete/{employeeID}', 'CompanyDirectorControllers\EmployeesController@delete');
     });
 
-    Route::prefix('Car')->group(function () {
+    Route::prefix('Car')->name('employee.cars.')->group(function () {
 
         Route::post('save', 'CarsEmployeeControllers\CarsController@saveCar')->name('saveCar');
         Route::delete('delete/{id}', 'CarsEmployeeControllers\CarsController@deleteCar')->name('deleteCar');
@@ -92,7 +92,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::prefix('User/Car')->group(function () {
+    Route::prefix('User/Car')->name('user.cars.')->group(function () {
 
         Route::post('save', 'UserControllers\CarController@saveCar')->name('saveCar');
         Route::delete('delete/{id}', 'UserControllers\CarController@deleteCar')->name('deleteCar');
@@ -118,7 +118,7 @@ Route::middleware([ 'api'])->group(function () {
         Route::delete('delete/{partID}', 'UserControllers\CarPartsController@deletePart');
         Route::get('getAll', 'UserControllers\CarPartsController@getMyParts');
         Route::get('viewAllPartsCar', 'UserControllers\CarPartsController@viewAllPartsCar');
-        Route::post('Sale/{partID}', 'UserControllers\SalesController@Sale');
+        
         Route::post('search', 'UserControllers\CarPartsController@search');
         Route::post('filtering', 'UserControllers\CarPartsController@filtering');
 
