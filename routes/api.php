@@ -23,7 +23,7 @@ Route::middleware([ 'api'])->group(function () {
     Route::get('me', 'AuthController@me');
 
     // Company            ,'middleware'=>'Admin'
-    Route::middleware(['prefix' => 'Company'],function (){
+    Route::prefix('Company')->group(function (){
         Route::post('save', 'AdminControllers\CompanyController@saveCompany') ;
         Route::post('freeze/{companyID}', 'AdminControllers\CompanyController@freezeCompany') ;
         Route::post('unfreezeBrand/{companyID}', 'AdminControllers\CompanyController@unfreezeCompany') ;
@@ -35,21 +35,21 @@ Route::middleware([ 'api'])->group(function () {
     });
 
 
-    Route::middleware(['prefix' => 'Workshop'],function (){
+    Route::prefix('Workshop')->group(function (){
         Route::post('save', 'AdminControllers\WorkShopController@save') ;
         Route::get('getAll', 'AdminControllers\WorkShopController@getAll') ;
         Route::post('update/{workshopID}', 'AdminControllers\WorkShopController@update') ;
         Route::delete('delete/{workshopID}', 'AdminControllers\WorkShopController@delete');
     });
 
-    Route::middleware(['prefix' => 'Employee'],function (){
+    Route::prefix('Employee')->group(function (){
         Route::post('save', 'CompanyDirectorControllers\EmployeesController@save') ;
         Route::get('getAll', 'CompanyDirectorControllers\EmployeesController@getAllEmployee') ;
         Route::post('update/{employeeID}', 'CompanyDirectorControllers\EmployeesController@update') ;
         Route::delete('delete/{employeeID}', 'CompanyDirectorControllers\EmployeesController@delete');
     });
 
-    Route::middleware(['prefix' => 'Car'], function () {
+    Route::prefix('Car')->group(function () {
 
         Route::post('save', 'CarsEmployeeControllers\CarsController@saveCar')->name('saveCar');
         Route::delete('delete/{id}', 'CarsEmployeeControllers\CarsController@deleteCar')->name('deleteCar');
@@ -67,7 +67,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 //
-    Route::middleware(['prefix' => 'Store'],function (){
+    Route::prefix('Store')->group(function (){
         Route::post('save', 'CompanyDirectorControllers\StoreController@saveStore');
         Route::post('freeze/{storeID}', 'CompanyDirectorControllers\StoreController@freezeStore');
         Route::post('unfreeze/{storeID}', 'CompanyDirectorControllers\StoreController@unfreezeStore');
@@ -77,13 +77,13 @@ Route::middleware([ 'api'])->group(function () {
         Route::delete('deleteStore/{storeID}', 'CompanyDirectorControllers\StoreController@deleteStore');
     });
 
-    Route::middleware(['prefix' => 'Salesman'],function (){
+    Route::prefix('Salesman')->group(function (){
         Route::post('setSalesman/{storeID}', 'CompanyDirectorControllers\SalesmanController@setSalesMan');
         Route::get('getSalesman/{storeID}', 'CompanyDirectorControllers\SalesmanController@getSalesman');
         Route::delete('deleteSalesMan/{salesmanID}', 'CompanyDirectorControllers\SalesmanController@deleteSalesMan');
     });
 
-    Route::middleware(['prefix' => 'Parts'],function (){
+    Route::prefix('Parts')->group(function (){
         Route::post('save', 'SalesmanControllers\CarPartsController@savePart');
         Route::post('update/{partID}', 'SalesmanControllers\CarPartsController@updatePart');
         Route::delete('delete/{partID}', 'SalesmanControllers\CarPartsController@deletePart');
@@ -92,7 +92,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'User/Car'], function () {
+    Route::prefix('User/Car')->group(function () {
 
         Route::post('save', 'UserControllers\CarController@saveCar')->name('saveCar');
         Route::delete('delete/{id}', 'UserControllers\CarController@deleteCar')->name('deleteCar');
@@ -112,7 +112,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'User/Parts'],function (){
+    Route::prefix('User/Parts')->group(function (){
         Route::post('save', 'UserControllers\CarPartsController@savePart');
         Route::post('update/{partID}', 'UserControllers\CarPartsController@updatePart');
         Route::delete('delete/{partID}', 'UserControllers\CarPartsController@deletePart');
@@ -125,7 +125,7 @@ Route::middleware([ 'api'])->group(function () {
     });
 
 
-    Route::middleware(['prefix' => 'User/Booking'],function (){
+    Route::prefix('User/Booking')->group(function (){
         Route::post('bookingCar/{carID}', 'UserControllers\BookingController@bookingCar');
         Route::post('cancellationOfBooking/{bookingID}', 'UserControllers\BookingController@cancellationOfBooking');
         Route::get('myBookings', 'UserControllers\BookingController@myBookings');
@@ -139,7 +139,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'Employee/Booking'],function (){
+    Route::prefix('Employee/Booking')->group(function (){
         Route::post('bookingCar/{carID}', 'CarsEmployeeControllers\BookingController@bookingCar');
         Route::post('cancellationOfBooking/{bookingID}', 'CarsEmployeeControllers\BookingController@cancellationOfBooking');
         Route::get('myBookings', 'CarsEmployeeControllers\BookingController@BookingsForMyCompany');
@@ -153,7 +153,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'Customer/Order'],function (){
+    Route::prefix('Customer/Order')->group(function (){
         Route::get('allMissingCarParts', 'UserControllers\CarPartsController@allMissingCarParts');
         Route::get('sendOrder/{carPartID}/{storeID}', 'UserControllers\CarPartsController@sendOrder');
         Route::get('myOrder', 'UserControllers\CarPartsController@myOrder');
@@ -161,7 +161,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'Customer/Maintenance'],function (){
+    Route::prefix('Customer/Maintenance')->group(function (){
         Route::get('getWorkShops', 'UserControllers\MaintenanceRequestController@getWorkShops');
         Route::post('sendRequest/{workSopID}', 'UserControllers\MaintenanceRequestController@sendRequest');
         Route::post('rate', 'UserControllers\RatingController@rate');
@@ -170,7 +170,7 @@ Route::middleware([ 'api'])->group(function () {
 
     });
 
-    Route::middleware(['prefix' => 'WorkShop/Maintenance'],function (){
+    Route::prefix('WorkShop/Maintenance')->group(function (){
         Route::get('getAllMaintenanceRequest', 'WorkShopControllers\MaintenanceRequestController@getAllMaintenanceRequest');
         Route::get('confirmRequest/{MaintenanceRequestID}', 'WorkShopControllers\MaintenanceRequestController@confirmRequest');
         Route::put('cancellationRequest/{requestID}', 'WorkShopControllers\MaintenanceRequestController@cancellationRequest');
