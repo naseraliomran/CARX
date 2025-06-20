@@ -22,6 +22,17 @@ Route::middleware([ 'api'])->group(function () {
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
 
+    Route::get('subscription-plans', 'SubscriptionController@getPlans');
+    Route::post('subscribe', 'SubscriptionController@subscribe');
+    Route::get('my-subscription', 'SubscriptionController@mySubscription');
+    Route::get('my-ads-count', 'SubscriptionController@myAdsCount');
+
+    Route::post('add-car', 'UserControllers\\CarController@saveCar')->middleware('subscription');
+    Route::post('add-part', 'UserControllers\\CarPartsController@savePart')->middleware('subscription');
+
+    Route::post('payment/initiate', 'PaymentController@initiate');
+    Route::post('payment/webhook', 'PaymentController@webhook');
+
     // Company            ,'middleware'=>'Admin'
     Route::prefix('Company')->group(function (){
         Route::post('save', 'AdminControllers\CompanyController@saveCompany') ;
