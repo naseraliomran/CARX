@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\UserSubscription;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            \App\UserSubscription::where('expires_at', '<', now())
+                ->where('status', 'active')
+                ->update(['status' => 'expired']);
+        })->daily();
     }
 
     /**
